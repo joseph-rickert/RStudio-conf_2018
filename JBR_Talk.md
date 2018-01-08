@@ -1,4 +1,4 @@
-What makes a great R Package?
+What Makes a Great R Package?
 ========================================================
 author: Joseph Rickert
 date: February 3, 2018
@@ -10,6 +10,56 @@ CRAN: The Home of Hidden Treasures
 12,000 + Packages
 
 ![](warehouse2.png)
+
+
+GitHub: A Destination for R Packages
+========================================================
+>"There is no benefit to having a package on CRAN"  
+Richard McElreath in "Statistical Rethinking"     
+
+METACRAN
+![](metacran.png)  
+
+Types of R Packages
+=========================================================
+By function:   
+* Data
+* Data Science
+* Science 
+* Statistics
+* Utilities
+
+By intended use:  
+* Public  
+* Private  
+   + Personal   
+   + Professional  
+
+Good R Packages:
+========================================================
+* Do something that people other than the author might consider useful   
+* Offer enough functionality to make it worth remembering   
+* Are well documented with both:   
+   + Complete reference manuals that included scientific references   
+   + Thoughtful vignettes   
+* Work   
+* Are well maintained   
+
+The Best R Packages:
+=========================================================
+* Have champions who actively promote, explain and teach their use   
+* Are curated by others (R Task Views)   
+* Used by other developers   
+
+* Great R Pakages
+=========================================================
+* Add new functionality and capabilities    
+* Develop new infrastructure   
+* Improve performance    
+* Change the way people think about R   
+* Expand the reach of R  
+* Do something beautiful
+
 
 Reverse Dependencies and Reverse Imports
 ========================================================
@@ -29,31 +79,18 @@ Most Integrated R Packages
 
 ![](TopRDRI.png)
 
+Alternatives to the "Great" Package
+========================================================
+Families of intergrated packages
+* [ROpenSci](https://ropensci.org/)
+* [statnet](http://www.statnet.org/)
+* [Tidyverse](https://www.tidyverse.org/)    
+![](tidyverse.png)
+
+
 For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-Slide With Code
-========================================================
 
 
-```r
-summary(cars)
-```
 
-```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-```
 
-Slide With Plot
-========================================================
-
-![plot of chunk unnamed-chunk-2](JBR_Talk-figure/unnamed-chunk-2-1.png)
