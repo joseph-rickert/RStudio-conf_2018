@@ -47,8 +47,9 @@ Good R Packages:
 
 The Best R Packages:
 =========================================================
+* Are well written, tested and provide helpful messages 
 * Have champions who actively promote, explain and teach their use   
-* Are curated by others (R Task Views)   
+* Are likely curated by others (R Task Views)   
 * Used by other developers   
 
 * Great R Pakages
@@ -63,21 +64,49 @@ The Best R Packages:
 
 Reverse Dependencies and Reverse Imports
 ========================================================
-The average number of reverse dependencies and reverse imports for a CRAN package is 3.1
+```{r}
+load(file="pkg_counts.RDA")
+head(pkg_counts[,c(1,2,7,8)],15)
+```
 
-The quantiles look like this:
-
-```r
-50%  60%  70%  80%  90% 100% 
- 0    0    0    1    2  1220 
-```   
-
-![](CRAN_RDRI.png)
-
-Most Integrated R Packages
+Some Simple Stats
 ========================================================
+```{r, echo=FALSE}
+ss <- function(x){
+   avg <- round(mean(x),digits=2)
+   std <- round(sd(x),digits=2)
+   med <- median(x)
+   res <- list(mean = avg, sd = std, median = med)
+}
+``` 
 
-![](TopRDRI.png)
+```{r}
+sapply(pkg_counts[-1],ss)
+```  
+
+Reverse Depends and Imports
+========================================================
+```{r}
+quantile(pkg_counts$RDRI)
+```  
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- ggplot(pkg_counts, aes(RDRI))
+p + geom_histogram() + xlim(0,50) + ylim(0,500)
+```  
+
+Collaboration
+=========================================================
+```{r}
+quantile(pkg_counts$Aut)
+``` 
+
+```{r,echo=FALSE}
+p1 <- ggplot(pkg_counts, aes(Aut))
+p1 + geom_histogram(bins=25) + xlim(0,10)
+```  
+
 
 Alternatives to the "Great" Package
 ========================================================

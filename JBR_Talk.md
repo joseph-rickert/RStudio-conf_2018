@@ -47,8 +47,9 @@ Good R Packages:
 
 The Best R Packages:
 =========================================================
+* Are well written, tested and provide helpful messages 
 * Have champions who actively promote, explain and teach their use   
-* Are curated by others (R Task Views)   
+* Are likely curated by others (R Task Views)   
 * Used by other developers   
 
 * Great R Pakages
@@ -63,21 +64,75 @@ The Best R Packages:
 
 Reverse Dependencies and Reverse Imports
 ========================================================
-The average number of reverse dependencies and reverse imports for a CRAN package is 3.1
-
-The quantiles look like this:
 
 ```r
-50%  60%  70%  80%  90% 100% 
- 0    0    0    1    2  1220 
-```   
+load(file="pkg_counts.RDA")
+head(pkg_counts[,c(1,2,7,8)],15)
+```
 
-![](CRAN_RDRI.png)
+```
+      Package Aut DepImp RDRI
+1        Rcpp   7      3 1220
+2        MASS   6      6 1142
+4     ggplot2   3     11 1126
+5       dplyr   5     12  684
+6      Matrix  13      7  666
+8        plyr   1      2  553
+9     stringr   2      3  487
+10    mvtnorm   9      3  479
+11   magrittr   1      0  432
+12   survival   2      7  425
+14       httr   2      6  409
+15   jsonlite   3      1  409
+16         sp   9      8  407
+17    lattice   1      6  393
+19 data.table   6      2  379
+```
 
-Most Integrated R Packages
+Some Simple Stats
 ========================================================
 
-![](TopRDRI.png)
+
+
+```r
+sapply(pkg_counts[-1],ss)
+```
+
+```
+       Aut  Dep  Imp  RD   RI    DepImp RDRI
+mean   2.23 1.53 2.81 0.7  2.09  4.35   2.79
+sd     2.69 1.58 3.87 7.37 21.25 4.06   27.2
+median 1    1    1    0    0     3      0   
+```
+
+Reverse Depends and Imports
+========================================================
+
+```r
+quantile(pkg_counts$RDRI)
+```
+
+```
+  0%  25%  50%  75% 100% 
+   0    0    0    0 1220 
+```
+
+![plot of chunk unnamed-chunk-5](JBR_Talk-figure/unnamed-chunk-5-1.png)
+
+Collaboration
+=========================================================
+
+```r
+quantile(pkg_counts$Aut)
+```
+
+```
+  0%  25%  50%  75% 100% 
+   1    1    1    3   97 
+```
+
+![plot of chunk unnamed-chunk-7](JBR_Talk-figure/unnamed-chunk-7-1.png)
+
 
 Alternatives to the "Great" Package
 ========================================================
