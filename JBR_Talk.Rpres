@@ -1,3 +1,7 @@
+
+
+
+
 What Makes a Great R Package?
 ========================================================
 author: Joseph Rickert
@@ -12,22 +16,39 @@ CRAN: The Home of Hidden Treasures
 ![](warehouse2.png)
 
 
-GitHub: A Destination for R Packages
+Disenchantment?
 ========================================================
 >"There is no benefit to having a package on CRAN"  
-Richard McElreath in "Statistical Rethinking"     
+     
+>Richard McElreath in "Statistical Rethinking"     
 
+>![Source: Shutterstock](Questionmark.png)
+
+
+GitHub is gaining ground
+=========================================================
 METACRAN
 ![](metacran.png)  
 
+
+CRAN: Statistical Knowledge
+==============================================================
+CRAN is the largest most complete repository of statistical knowledge.
+
+![](glm.png)
+
 Types of R Packages
 =========================================================
-By function:   
+By application domain:
+* Computational functions
 * Data
 * Data Science
+* Machine Learning
 * Science 
 * Statistics
 * Utilities
+
+***
 
 By intended use:  
 * Public  
@@ -52,7 +73,7 @@ The Best R Packages:
 * Are likely curated by others (R Task Views)   
 * Used by other developers   
 
-* Great R Pakages
+Great R Packages:
 =========================================================
 * Add new functionality and capabilities    
 * Develop new infrastructure   
@@ -62,9 +83,9 @@ The Best R Packages:
 * Do something beautiful
 
 
-Reverse Dependencies and Reverse Imports
+Top 15 most integrated CRAN Packages
 ========================================================
-```{r}
+```{r, echo =FALSE}
 load(file="pkg_counts.RDA")
 head(pkg_counts[,c(1,2,7,8)],15)
 ```
@@ -78,35 +99,71 @@ ss <- function(x){
    med <- median(x)
    res <- list(mean = avg, sd = std, median = med)
 }
-``` 
 
-```{r}
 sapply(pkg_counts[-1],ss)
 ```  
 
-Reverse Depends and Imports
-========================================================
-```{r}
+Reverse Depends and Imports Stats
+=========================================================
+RDRI quantiles
+```{r, echo = FALSE}
 quantile(pkg_counts$RDRI)
 ```  
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center', fig.width=20,fig.height=10}
 library(ggplot2)
 p <- ggplot(pkg_counts, aes(RDRI))
-p + geom_histogram() + xlim(0,50) + ylim(0,500)
+p + geom_histogram() + xlim(0,50) + ylim(0,500) + 
+     theme(axis.text=element_text(size=30),
+        axis.title=element_text(size=30,face="bold"))
 ```  
 
 Collaboration
 =========================================================
-```{r}
+Author quantiles
+```{r, echo =FALSE}
 quantile(pkg_counts$Aut)
 ``` 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, fig.align='center', fig.width=20,fig.height=10}
 p1 <- ggplot(pkg_counts, aes(Aut))
-p1 + geom_histogram(bins=25) + xlim(0,10)
+p1 + geom_histogram(bins=25) + xlim(0,10) + 
+     theme(axis.text=element_text(size=30),
+        axis.title=element_text(size=30,face="bold"))
 ```  
 
+My Picks for the R Package Hall of Fame
+=========================================================
+
+Package   | Year| Description                         | Author
+----------|-----|-------------------------------------|-----------------    
+caret     | 2007| A framework for predictive modeling | Kuhn et al.
+data.table| 2006| Fast, big data queries              | Dowel et al.
+e1071     | 1999| Machine Learning                    | Meyer et al.
+dplyr     | 2014| Tidy data manipulation              | Wickham et al.
+foreach   | 2009| Parallel computing                  | Calaway & Weston
+forecast  | 2009| Time series forecasting             | Hyndman et al.
+ggplot2   | 2007| Plots and Visualizations            | Wickham & Cheng
+glimnet   | 2008| lasso, elastic net regularization   | Freidman et al.
+Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
+knitr     | 2012| Literate programming                | Xie et al.
+lme4      | 2003| GLM mixed-effects models            | Bates et al.
+MASS      | 2009| Fundamental statistical functions   | Ribley et al.
+Maatrix   | 2000| Matrix Algebra                      | Bates et al.
+Rcpp      | 2008| R interface to C++                  | Eddelbuettel et al.
+rmarkdown | 2014| Reproducible research               | Allaire et al.
+shiny     | 2012| Web apps & reactive programming     | Chang et al.
+sp        | 2005| Spatial statistics                  | Pebesma et al.
+zoo       | 2004| Time Series                         | Zeileis et al.
+
+Some Hall of Fame Stats
+========================================================
+```{r,echo=FALSE}
+gp <- c("caret","data.table","e1071","dplyr","foreach","forecast","ggplot2",
+        "glimnet","Hmisc","knitr","lme4","MASS","Matrix","markdown","Rcpp","shiny","sp","zoo")
+
+print(pkg_counts[pkg_counts$Package %in% gp,], row.names = FALSE)
+```   
 
 Alternatives to the "Great" Package
 ========================================================
@@ -118,6 +175,7 @@ Families of intergrated packages
 
 
 For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
 
 
 

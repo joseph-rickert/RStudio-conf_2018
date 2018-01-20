@@ -91,3 +91,14 @@ p1 + geom_histogram(bins=25) + xlim(0,10)
 dFs400 <- dFs %>% select(pkgs.Package,num_RDRI) %>% filter(num_RDRI > 400)
 names(dFs400) <-c("Package","RDRI")
   
+pkg_counts <- dFs[!duplicated(dFs),]
+
+save(pkg_counts,file="pkg_counts.RDA")
+
+####################
+gp <- c("caret","data.table","e1071","dplyr","foreach","forecast","ggplot2",
+        "glimnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","zoo")
+
+head(dFs)
+
+pkg_counts[pkg_counts$Package %in% gp,]
