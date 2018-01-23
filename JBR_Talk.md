@@ -4,9 +4,20 @@
 
 What Makes a Great R Package?
 ========================================================
-author: Joseph Rickert
-date: February 3, 2018
-autosize: true
+
+    
+    
+   
+   
+       
+
+Joseph Rickert     
+February 3, 2018     
+
+![](R-Logo.png)
+
+
+
 
 CRAN: The Home of Hidden Treasures
 ========================================================
@@ -56,12 +67,29 @@ By intended use:
    + Personal   
    + Professional  
 
+Professional Packages
+=======================================================
+e.g. [clindr](https://CRAN.R-project.org/package=clinDR)   
+
+![](clindr.png)   
+
+***
+
+* References behind paywall
+* No vignette
+* No README
+* Looks like quite a bit of work went into it
+   * Numerous functions
+   * Parallel execution
+
+
 Good R Packages:
 ========================================================
 * Do something that people other than the author might consider useful   
 * Offer enough functionality to make it worth remembering   
 * Are well documented with both:   
-   + Complete reference manuals that included scientific references   
+   + Complete reference manuals that included references
+   + README and NEWS files
    + Thoughtful vignettes   
 * Work   
 * Are well maintained   
@@ -82,6 +110,63 @@ Great R Packages:
 * Expand the reach of R  
 * Do something beautiful
 
+
+My Picks for the R Package Hall of Fame
+=========================================================
+
+Package   | Year| Description                         | Author
+----------|-----|-------------------------------------|-----------------    
+caret     | 2007| A framework for predictive modeling | Kuhn et al.
+data.table| 2006| Fast, big data queries              | Dowle et al.
+e1071     | 1999| Machine Learning                    | Meyer et al.
+dplyr     | 2014| Tidy data manipulation              | Wickham et al.
+foreach   | 2009| Parallel computing                  | Calaway & Weston
+forecast  | 2009| Time series forecasting             | Hyndman et al.
+ggplot2   | 2007| Plots and Visualizations            | Wickham & Cheng
+glimnet   | 2008| lasso, elastic net regularization   | Freidman et al.
+Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
+knitr     | 2012| Literate programming                | Xie et al.
+lme4      | 2003| GLM mixed-effects models            | Bates et al.
+MASS      | 2009| Fundamental statistical functions   | Ribley et al.
+Maatrix   | 2000| Matrix Algebra                      | Bates et al.
+Rcpp      | 2008| R interface to C++                  | Eddelbuettel et al.
+rmarkdown | 2014| Reproducible research               | Allaire et al.
+shiny     | 2012| Web apps & reactive programming     | Chang et al.
+sp        | 2005| Spatial statistics                  | Pebesma et al.
+zoo       | 2004| Time Series                         | Zeileis et al.
+
+
+Some Simple Package Stats
+========================================================
+
+```r
+pdb <- tools:::CRAN_package_db()
+dim(pdb)
+```
+
+```
+[1] 12107    65
+```
+
+
+
+```
+       Aut  Dep  Imp  RD   RI    DepImp RDRI
+mean   2.23 1.53 2.81 0.7  2.09  4.35   2.79
+sd     2.69 1.58 3.87 7.37 21.25 4.06   27.2
+median 1    1    1    0    0     3      0   
+```
+
+Reverse Depends and Imports Stats
+=========================================================
+RDRI quantiles
+
+```
+  0%  25%  50%  75% 100% 
+   0    0    0    0 1220 
+```
+
+<img src="JBR_Talk-figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 Top 15 most integrated CRAN Packages
 ========================================================
@@ -105,26 +190,6 @@ Top 15 most integrated CRAN Packages
 19 data.table   6      2  379
 ```
 
-Some Simple Stats
-========================================================
-
-```
-       Aut  Dep  Imp  RD   RI    DepImp RDRI
-mean   2.23 1.53 2.81 0.7  2.09  4.35   2.79
-sd     2.69 1.58 3.87 7.37 21.25 4.06   27.2
-median 1    1    1    0    0     3      0   
-```
-
-Reverse Depends and Imports Stats
-=========================================================
-RDRI quantiles
-
-```
-  0%  25%  50%  75% 100% 
-   0    0    0    0 1220 
-```
-
-<img src="JBR_Talk-figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 Collaboration
 =========================================================
@@ -135,31 +200,8 @@ Author quantiles
    1    1    1    3   97 
 ```
 
-<img src="JBR_Talk-figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="JBR_Talk-figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
-My Picks for the R Package Hall of Fame
-=========================================================
-
-Package   | Year| Description                         | Author
-----------|-----|-------------------------------------|-----------------    
-caret     | 2007| A framework for predictive modeling | Kuhn et al.
-data.table| 2006| Fast, big data queries              | Dowel et al.
-e1071     | 1999| Machine Learning                    | Meyer et al.
-dplyr     | 2014| Tidy data manipulation              | Wickham et al.
-foreach   | 2009| Parallel computing                  | Calaway & Weston
-forecast  | 2009| Time series forecasting             | Hyndman et al.
-ggplot2   | 2007| Plots and Visualizations            | Wickham & Cheng
-glimnet   | 2008| lasso, elastic net regularization   | Freidman et al.
-Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
-knitr     | 2012| Literate programming                | Xie et al.
-lme4      | 2003| GLM mixed-effects models            | Bates et al.
-MASS      | 2009| Fundamental statistical functions   | Ribley et al.
-Maatrix   | 2000| Matrix Algebra                      | Bates et al.
-Rcpp      | 2008| R interface to C++                  | Eddelbuettel et al.
-rmarkdown | 2014| Reproducible research               | Allaire et al.
-shiny     | 2012| Web apps & reactive programming     | Chang et al.
-sp        | 2005| Spatial statistics                  | Pebesma et al.
-zoo       | 2004| Time Series                         | Zeileis et al.
 
 Some Hall of Fame Stats
 ========================================================
