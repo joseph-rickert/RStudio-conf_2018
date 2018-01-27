@@ -1,0 +1,128 @@
+---
+title: "R Notebook"
+output: html_notebook
+author: 'Joseph Rickert'
+---
+
+This notebook contains the code required to produce the statistics and plots for my 2018 RStudio::Conf presentation *What Makes a Great R Package?*. It contains essentiallt the same code as the Count_RD.R script that is also in this GitHub repository.
+
+### Fetch the Package Metadata
+`The CRAN_package_db()` function in the `tools` package provides the metadata. 
+```{r}
+library(tidyverse)
+#pdb <- tools:::CRAN_package_db()
+load(file="pdb.RDA")
+
+pkgs <- pdb[, c(1,4,5,17,60,61)]
+names(pkgs) 
+names(pkgs) <- c("Package","Dep","Imp","Aut","RD","RI")
+head(pkgs)
+``` 
+
+
+### Clean up the Authors field
+```{r}
+# Function to remove all text between two brackets
+# http://bit.ly/2mE7TNJ
+clean <- function(x){
+  gsub("\\[[^]]*]", "",x)
+}
+
+# Function to remove line breaks
+# http://bit.ly/2B0n4VS
+
+clean2 <- function(x){
+  gsub("[\r\n]", "", x)
+}
+
+xx <- pkgs$Aut %>% lapply(clean) %>% lapply(clean2)
+``` 
+
+### Process Meta data
+Here I process the list of meta data inorder to get a data frame of counts. Note that the list DepImpL contains the union of Depends and Imoprts. Likewise, RDRIL contains the union of Reverse Depends and Reverse Imports.
+```{r}
+DepL <- list()
+ImpL <- list()
+AutL <- list()
+RDL <- list()
+RIL <- list()
+DepImpL <- list()
+RDRIL <- list()
+
+
+for(i in seq_along(pkgs$Package)){
+  DepL[[i]] <- unlist(pkgs$Dep[[i]] %>% strsplit(","))
+  ImpL[[i]] <- unlist(pkgs$Imp[[i]] %>% strsplit(","))
+  AutL[[i]] <- unlist(xx[[i]] %>% strsplit(","))
+  RDL[[i]]  <- unlist(pkgs$RD[[i]] %>% strsplit(","))
+  RIL[[i]]  <- unlist(pkgs$RI[[i]] %>% strsplit(","))
+  DepImpL[[i]] <- na.omit(union(unlist(DepL[[i]]), unlist(ImpL[[i]])))
+  RDRIL[[i]] <- na.omit(union(unlist(RDL[[i]]), unlist(RIL[[i]])))
+  }
+
+dL <- list(DepL,ImpL,AutL,RDL,RIL,DepImpL,RDRIL)
+
+# Now build the counts data frame
+num_Dep <- vector()
+num_Imp <- vector()
+num_Aut <- vector()
+num_RD <- vector()
+num_RI <- vector()
+num_DepImp <- vector()
+num_RDRI <- vector()
+
+
+for(i in seq(pkgs$Package)){
+  num_Dep[i] <- length(na.omit(unlist(DepL[[i]])))
+  num_Imp[i] <- length(na.omit(unlist(ImpL[[i]])))
+  num_Aut[i] <- length(na.omit(unlist(AutL[[i]])))
+  num_RD[i]  <- length(na.omit(unlist(RDL[[i]])))
+  num_RI[i]  <- length(na.omit(unlist(RIL[[i]])))
+  num_DepImp[i] <- length(na.omit(unlist(DepImpL[[i]])))
+  num_RDRI[i] <- length(na.omit(unlist(RDRIL[[i]])))
+}
+
+
+dF <- data.frame(pkgs$Package, num_Aut, num_Dep,num_Imp,num_RD,num_RI,num_DepImp,num_RDRI)
+```  
+
+### Some Further Cleaning
+I am interested in the packages that are most depended upon by other package developers. I take this to be the packages with the largest number of RDRI (Union of Reverse Dependes and Reverse Imports) After sorting the RDRI field, we see that there appears to be 15 duplicated package. I don't understand this, but I think it is safe to just omit the duplicates for the analsysis that follows.
+
+```{r}
+dFs <- arrange(dF,desc((num_RDRI)))
+names(dFs) <- c("Package", "Aut", "Dep", "Imp", "RD", "RI", "DepImp", "RDRI")
+head(dFs)
+pkg_counts <- dFs[!duplicated(dFs),]
+head(pkg_counts)
+```  
+
+
+### Compute Statistics and Plot Results
+```{r}
+mean(pkg_counts$RDRI) 
+median(pkg_counts$RDRI)
+quantile(pkg_counts$RDRI, probs = seq(.5,1,.1))
+
+p <- ggplot(pkg_counts, aes(RDRI))
+p + geom_histogram() + xlim(0,50) + ylim(0,500)
+
+p1 <- ggplot(pkg_counts, aes(Aut))
+p1 + geom_histogram(bins=25) + xlim(0,10)
+
+# Select packages with over 400 RDRI
+dFs400 <- pkg_counts%>% select(Package,RDRI) %>% filter(RDRI > 400)
+  
+#save(pkg_counts,file="pkg_counts.RDA")
+```   
+
+### Look at "Hall of Fame"
+```{r}
+gp <- c("caret","bigmemory","data.table","e1071","dplyr","foreach","forecast","ggplot2",
+        "glimnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","XML","zoo")
+
+
+pkg_counts[pkg_counts$Package %in% gp,]
+``` 
+
+

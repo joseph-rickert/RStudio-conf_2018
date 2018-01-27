@@ -25,6 +25,8 @@ clean2 <- function(x){
 
 x <- lapply(pkgs$Aut,clean)
 xx <- lapply(x,clean2)
+
+#uu <- pkgs$Aut %>% lapply(clean) %>% lapply(clean2)
 ########################################
 
 DepL <- list()
@@ -79,7 +81,7 @@ quantile(dF$num_RDRI, probs = seq(.5,1,.1))
 
 dFs <- arrange(dF,desc((num_RDRI)))
 names(dFs) <- c("Package", "Aut", "Dep", "Imp", "RD", "RI", "DepImp", "RDRI")
-dFsu <- filter(dFs,unique(Package))
+
 
 library(ggplot2)
 p <- ggplot(dFs, aes(num_RDRI))
@@ -88,7 +90,7 @@ p + geom_histogram() + xlim(0,50) + ylim(0,500)
 p1 <- ggplot(dFs, aes(num_Aut))
 p1 + geom_histogram(bins=25) + xlim(0,10)
 
-dFs400 <- dFs %>% select(pkgs.Package,num_RDRI) %>% filter(num_RDRI > 400)
+dFs400 <- dFs %>% select(Package,RDRI) %>% filter(RDRI > 400)
 names(dFs400) <-c("Package","RDRI")
   
 pkg_counts <- dFs[!duplicated(dFs),]
@@ -96,7 +98,8 @@ pkg_counts <- dFs[!duplicated(dFs),]
 save(pkg_counts,file="pkg_counts.RDA")
 
 ####################
-gp <- c("caret","data.table","e1071","dplyr","foreach","forecast","ggplot2",
+# Create vector of Hall of Fame packages
+gp <- c("caret","data.table","e1071","dplyr","plyr","foreach","forecast","ggplot2",
         "glimnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","zoo")
 
 head(dFs)
