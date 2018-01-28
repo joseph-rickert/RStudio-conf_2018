@@ -119,7 +119,7 @@ dFs400 <- pkg_counts%>% select(Package,RDRI) %>% filter(RDRI > 400)
 ### Look at "Hall of Fame"
 ```{r}
 gp <- c("caret","bigmemory","data.table","e1071","dplyr","foreach","forecast","ggplot2",
-        "glimnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","XML","zoo")
+        "glmnet","Hmisc","knitr","lme4","Matrix","MASS","rmarkdown","Rcpp","shiny","sp","XML","zoo")
 
 
 pkg_counts[pkg_counts$Package %in% gp,]

@@ -138,7 +138,7 @@ dplyr     | 2014| Tidy data manipulation              | Wickham et al.
 foreach   | 2009| Parallel computing                  | Calaway & Weston
 forecast  | 2009| Time series forecasting             | Hyndman et al.
 ggplot2   | 2007| Plots and Visualizations            | Wickham & Cheng
-glimnet   | 2008| lasso, elastic net regularization   | Freidman et al.
+glmnet    | 2008| lasso, elastic net regularization   | Freidman et al.
 Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
 knitr     | 2012| Literate programming                | Xie et al.
 lme4      | 2003| GLM mixed-effects models            | Bates et al.
@@ -172,7 +172,7 @@ dim(pdb)
 ```
 
 ```
-[1] 12118    65
+[1] 12096    65
 ```
 
 
@@ -246,6 +246,7 @@ Some Hall of Fame Stats
       shiny  29   2  10  41  236     12  277
         XML   1   3   0  52  169      3  221
         zoo   5   2   4  62  150      6  212
+     glmnet   5   3   1  46  105      4  151
        lme4   9   4  10  47   98     14  145
       Hmisc   2   4  15  43  100     19  143
       knitr  77   1   8  10  113      9  123

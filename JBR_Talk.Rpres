@@ -138,7 +138,7 @@ dplyr     | 2014| Tidy data manipulation              | Wickham et al.
 foreach   | 2009| Parallel computing                  | Calaway & Weston
 forecast  | 2009| Time series forecasting             | Hyndman et al.
 ggplot2   | 2007| Plots and Visualizations            | Wickham & Cheng
-glimnet   | 2008| lasso, elastic net regularization   | Freidman et al.
+glmnet    | 2008| lasso, elastic net regularization   | Freidman et al.
 Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
 knitr     | 2012| Literate programming                | Xie et al.
 lme4      | 2003| GLM mixed-effects models            | Bates et al.
@@ -225,7 +225,7 @@ Some Hall of Fame Stats
 ```{r,echo=FALSE}
 
 gp <- c("caret","bigmemory","data.table","e1071","dplyr","foreach","forecast","ggplot2",
-        "glimnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","XML","zoo")
+        "glmnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","XML","zoo")
 
 print(pkg_counts[pkg_counts$Package %in% gp,], row.names = FALSE)
 ```   
