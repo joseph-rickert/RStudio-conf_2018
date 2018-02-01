@@ -10,8 +10,9 @@ This notebook contains the code required to produce the statistics and plots for
 `The CRAN_package_db()` function in the `tools` package provides the metadata. 
 ```{r}
 library(tidyverse)
-#pdb <- tools:::CRAN_package_db()
-load(file="pdb.RDA")
+#pdb <- tools:::CRAN_package_db() Last run Jan-31-2018
+#load(file="pdb.RDA")
+#load(file="pdbJan31.RDA")
 
 pkgs <- pdb[, c(1,4,5,17,60,61)]
 names(pkgs) 
