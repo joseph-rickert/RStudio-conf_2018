@@ -12,7 +12,7 @@ This notebook contains the code required to produce the statistics and plots for
 library(tidyverse)
 #pdb <- tools:::CRAN_package_db() Last run Jan-31-2018
 #load(file="pdb.RDA")
-#load(file="pdbJan31.RDA")
+load(file="pdbJan31.RDA")
 
 pkgs <- pdb[, c(1,4,5,17,60,61)]
 names(pkgs) 
@@ -126,4 +126,7 @@ gp <- c("caret","bigmemory","data.table","e1071","dplyr","foreach","forecast","g
 pkg_counts[pkg_counts$Package %in% gp,]
 ``` 
 
+```{r}
+save(pkg_counts,file="pkg_counts_v2.RDA")
+```   
 
