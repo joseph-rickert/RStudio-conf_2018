@@ -275,6 +275,7 @@ Parting Thoughts
 When writing an R package:
 * Think about being kind to your users
 * Put effort into the documentation
+* Think about collaborating
 * Know that you are making a direct contribution to statistical knowledge
 
 
