@@ -142,7 +142,7 @@ glmnet    | 2008| lasso, elastic net regularization   | Freidman et al.
 Hmisc     | 2003| 157 Misc data analysis & utilities  | Harrell et al.
 knitr     | 2012| Literate programming                | Xie et al.
 lme4      | 2003| GLM mixed-effects models            | Bates et al.
-MASS      | 2009| Fundamental statistical functions   | Ribley et al.
+MASS      | 2009| Fundamental statistical functions   | Ripley et al.
 Matrix    | 2000| Matrix Algebra                      | Bates et al.
 Rcpp      | 2008| R interface to C++                  | Eddelbuettel et al.
 rmarkdown | 2014| Reproducible research               | Allaire et al.
@@ -237,14 +237,23 @@ print(pkg_counts[pkg_counts$Package %in% gp,], row.names = FALSE)
 
 Alternatives to the "Great" Package
 ========================================================
-Families of intergrated packages
+Families of integrated packages
 * [ROpenSci](https://ropensci.org/)
 * [statnet](http://www.statnet.org/)
 * [Tidyverse](https://www.tidyverse.org/)    
 ![](tidyverse.png)
 
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+Parting Thoughts
+========================================================
+When writing an R package:
+* Think about being kind to your users
+* Put effort into the documentation
+* Know that you are making a direct contribution to statistical knowledge
+
+
+
+**https://github.com/joseph-rickert/RStudio-conf_2018**
 
 
 
