@@ -230,7 +230,7 @@ Some Hall of Fame Stats
 ```{r,echo=FALSE}
 
 gp <- c("caret","bigmemory","data.table","e1071","dplyr","foreach","forecast","ggplot2",
-        "glmnet","Hmisc","knitr","lme4","Matrix","MASS","markdown","Rcpp","shiny","sp","XML","zoo")
+        "glmnet","Hmisc","knitr","lme4","Matrix","MASS","rmarkdown","Rcpp","shiny","sp","XML","zoo")
 
 print(pkg_counts[pkg_counts$Package %in% gp,], row.names = FALSE)
 ```   

@@ -255,10 +255,10 @@ Some Hall of Fame Stats
       Hmisc   2   4  15  42   97     19  139
       knitr  84   1   7  11  117      8  128
       e1071   7   0   6  23   87      6  110
+  rmarkdown  36   1  12   1   66     13   67
    forecast   5   1  13  22   41     14   63
       caret  16   3  12  10   48     15   58
   bigmemory   4   1   4  12   16      5   28
-   markdown  16   1   2   3   19      3   22
 ```
 
 Alternatives to the "Great" Package
