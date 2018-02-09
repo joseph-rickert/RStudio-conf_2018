@@ -36,7 +36,7 @@ clean2 <- function(x){
   gsub("[\r\n]", "", x)
 }
 
-xx <- pkgs$Aut %>% lapply(clean) %>% lapply(clean2)
+pkgs$Aut <- pkgs$Aut %>% lapply(clean) %>% lapply(clean2)
 ``` 
 
 ### Process Meta data
@@ -54,7 +54,7 @@ RDRIL <- list()
 for(i in seq_along(pkgs$Package)){
   DepL[[i]] <- unlist(pkgs$Dep[[i]] %>% strsplit(","))
   ImpL[[i]] <- unlist(pkgs$Imp[[i]] %>% strsplit(","))
-  AutL[[i]] <- unlist(xx[[i]] %>% strsplit(","))
+  AutL[[i]] <- unlist(pkgs$Aut[[i]] %>% strsplit(","))
   RDL[[i]]  <- unlist(pkgs$RD[[i]] %>% strsplit(","))
   RIL[[i]]  <- unlist(pkgs$RI[[i]] %>% strsplit(","))
   DepImpL[[i]] <- na.omit(union(unlist(DepL[[i]]), unlist(ImpL[[i]])))
@@ -87,20 +87,6 @@ for(i in seq(pkgs$Package)){
 dF <- data.frame(pkgs$Package, num_Aut, num_Dep,num_Imp,num_RD,num_RI,num_DepImp,num_RDRI)
 ```  
 
-### Tidy Preparation
-The rather cumberson code above used to construct dF can be replaced by just a few lines of elegant tidy code. Many thanks to my colleague Edgar Ruiz for contributing the following:
-
-```{r}
-library(stringr)
-dFT <- seq_len(nrow(pkgs)) %>%
-  map_df(~{
-    pkgs[.x, ] %>%
-      select(-Package) %>%
-      map_df(~ifelse(is.na(.x), 0, length(str_split(.x, ",")[[1]]))) %>%
-      mutate(Package = pkgs$Package[.x])
-  }) %>%
-  select(Package, Aut, Dep, Imp, RD, RI)
-``` 
 
 ### Some Further Cleaning
 I am interested in the packages that are most depended upon by other package developers. I take this to be the packages with the largest number of RDRI (Union of Reverse Dependes and Reverse Imports) After sorting the RDRI field, we see that there appears to be 15 duplicated package. I don't understand this, but I think it is safe to just omit the duplicates for the analsysis that follows.
@@ -112,9 +98,6 @@ head(dFs)
 pkg_counts <- dFs[!duplicated(dFs),]
 head(pkg_counts)
 ```  
-
-
-
 
 
 ### Compute Statistics and Plot Results
