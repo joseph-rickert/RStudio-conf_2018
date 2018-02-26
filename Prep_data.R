@@ -1,6 +1,6 @@
 library(tidyverse)
 library(stringr)
-pdb <- tools:::CRAN_package_db()
+#pdb <- tools:::CRAN_package_db()
 str(pdb, max.levels = 1)
 dim(pdb)
 names(pdb)
